@@ -1,7 +1,9 @@
 # Book Management System API
 
-API built with **Node.js + Express + MongoDB** that exposes endpoints for managing books and users.  
-Includes controllers, custom error handling, JWT authentication, search, pagination, and auditing. Fully documented with Swagger.
+A RESTful API for managing books and users, developed with **Node.js**, **Express**, and **MongoDB** (or SQL Server).  
+This system allows users to create, edit, delete, and view books. The API is the core of the system, enabling interaction with a database of books. Authenticated users can perform all CRUD operations, while critical actions are logged for traceability. A simple web interface (React or Angular) can be used to interact with the API.
+
+---
 
 ![NodeJS](https://img.shields.io/badge/node.js-6DA55F?style=for-the-badge&logo=node.js&logoColor=white) ![Express.js](https://img.shields.io/badge/express.js-%23404d59.svg?style=for-the-badge&logo=express&logoColor=%2361DAFB) ![MongoDB](https://img.shields.io/badge/mongodb-%2347A248.svg?style=for-the-badge&logo=mongodb&logoColor=white)
 
