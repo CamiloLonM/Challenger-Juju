@@ -40,7 +40,13 @@ export const login = async (req, res, next) => {
       }
     );
 
-    await createAudit(req, user._id, 'LOGIN', `User ${user.email} logged in`);
+    await createAudit({
+      req,
+      user: user._id,
+      entity: 'User',
+      action: 'LOGIN',
+      description: `User ${user.email} logged in`,
+    });
 
     return res.status(200).json({
       message: 'Login successful',
@@ -52,7 +58,7 @@ export const login = async (req, res, next) => {
       },
     });
   } catch (error) {
-    next(err);
+    next(error);
   }
 };
 
@@ -88,17 +94,18 @@ export const register = async (req, res, next) => {
       role: role || 'user',
     });
 
-    await createAudit(
+    await createAudit({
       req,
-      user._id,
-      'REGISTER',
-      `User ${user.email} registered`
-    );
+      user: user._id,
+      entity: 'User',
+      action: 'REGISTER',
+      description: `User ${user.email} registered`,
+    });
 
     return res.status(201).json({
       message: 'User registered successfully',
     });
   } catch (error) {
-    next(err);
+    next(error);
   }
 };

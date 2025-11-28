@@ -1,3 +1,4 @@
+import dotenv from 'dotenv';
 import express from 'express';
 import cors from 'cors';
 import morgan from 'morgan';
@@ -9,6 +10,7 @@ import authRoutes from './routes/auth.js';
 import { errorHandler } from './middlewares/error.js';
 
 const app = express();
+dotenv.config();
 
 const API_VERSION = process.env.API_VERSION;
 

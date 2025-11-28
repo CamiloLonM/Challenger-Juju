@@ -1,15 +1,15 @@
 {
   "users": [
     {
-      "name": "Admin User",
-      "email": "admin@example.com",
-      "password": "Admin123!",
+      "name": "admin",
+      "email": "adm@google.com",
+      "password": "123456",
       "role": "admin"
     },
     {
-      "name": "Regular User",
-      "email": "user@example.com",
-      "password": "User123!",
+      "name": "user",
+      "email": "user@google.com",
+      "password": "123456",
       "role": "user"
     }
   ],

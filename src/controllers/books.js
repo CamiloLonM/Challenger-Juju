@@ -5,7 +5,7 @@ import AppError from '../utils/AppError.js';
 
 export const createBook = async (req, res) => {
   try {
-    const { title, author, description, publishedYear, category, state } =
+    let { title, author, description, publishedYear, category, state } =
       req.body;
 
     title = cleanString(title);
@@ -34,17 +34,17 @@ export const createBook = async (req, res) => {
     });
 
     await createAudit({
+      req,
       user: req.user.id,
       action: 'CREATE',
       entity: 'Book',
       entityId: book._id,
-      ipAddress: req.ip,
       description: `Book created: ${book.title}`,
     });
 
     return res.status(201).json({ message: 'Book created successfully' });
   } catch (error) {
-    next(err);
+    next(error);
   }
 };
 
@@ -89,7 +89,7 @@ export const getBooks = async (req, res) => {
       limit,
     });
   } catch (error) {
-    next(err);
+    next(error);
   }
 };
 
@@ -103,14 +103,14 @@ export const getBookById = async (req, res) => {
 
     return res.status(200).json(book);
   } catch (error) {
-    next(err);
+    next(error);
   }
 };
 
 export const updateBook = async (req, res) => {
   try {
     const { id } = req.params;
-    const { title, author } = req.body;
+    let { title, author } = req.body;
 
     const book = await Book.findById(id);
     if (!book) throw new AppError('Book not found', 404);
@@ -135,6 +135,7 @@ export const updateBook = async (req, res) => {
     });
 
     await createAudit({
+      req,
       user: req.user.id,
       action: 'UPDATE',
       entity: 'Book',
@@ -145,7 +146,7 @@ export const updateBook = async (req, res) => {
 
     return res.status(200).json(updated);
   } catch (error) {
-    next(err);
+    next(error);
   }
 };
 
@@ -158,6 +159,7 @@ export const deleteBook = async (req, res) => {
     if (!deleted) throw new AppError('Book not found', 404);
 
     await createAudit({
+      req,
       user: req.user.id,
       action: 'DELETE',
       entity: 'Book',
@@ -168,6 +170,6 @@ export const deleteBook = async (req, res) => {
 
     return res.status(200).json({ message: 'Book deleted successfully' });
   } catch (error) {
-    next(err);
+    next(error);
   }
 };
