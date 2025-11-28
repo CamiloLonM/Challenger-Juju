@@ -24,7 +24,7 @@ const options = {
     },
     servers: [
       {
-        url: `${process.env.HOST}:${process.env.PORT}/${process.env.API_VERSION}`,
+        url: `${process.env.HOST}:${process.env.PORT}/api/${process.env.API_VERSION}`,
         description: 'Servidor de desarrollo',
       },
     ],
