@@ -5,7 +5,10 @@ This system allows users to create, edit, delete, and view books. The API is the
 
 ---
 
-![NodeJS](https://img.shields.io/badge/node.js-6DA55F?style=for-the-badge&logo=node.js&logoColor=white) ![Express.js](https://img.shields.io/badge/express.js-%23404d59.svg?style=for-the-badge&logo=express&logoColor=%2361DAFB) ![MongoDB](https://img.shields.io/badge/mongodb-%2347A248.svg?style=for-the-badge&logo=mongodb&logoColor=white)
+![NodeJS](https://img.shields.io/badge/node.js-6DA55F?style=for-the-badge&logo=node.js&logoColor=white)
+![React](https://img.shields.io/badge/react-%2320232a.svg?style=for-the-badge&logo=react&logoColor=%2361DAFB)
+![MongoDB](https://img.shields.io/badge/mongodb-%2347A248.svg?style=for-the-badge&logo=mongodb&logoColor=white)
+![MUI](https://img.shields.io/badge/MUI-%23007FFF.svg?style=for-the-badge)
 
 ---
 
@@ -13,6 +16,8 @@ This system allows users to create, edit, delete, and view books. The API is the
 
 - **Book Management**
   - Create, list (with pagination, filters, and sorting), get details, update, and delete books.
+- **UI**.
+  - Web interface with React and Material
 - **User Management**
   - Register and login using JWT.
 - **Search & Filtering**
@@ -23,6 +28,14 @@ This system allows users to create, edit, delete, and view books. The API is the
   - Logs critical actions in the database (user registration, login, book CRUD operations).
 - **API Documentation**
   - Swagger UI available at `/api/{version}/docs`.
+
+---
+
+## Tecnologías
+
+- Backend: Node.js, Express, Mongoose (MongoDB), JWT.
+- Frontend: React, Material UI, React Hook Form, Axios.
+- Documentación: Swagger.
 
 ---
 

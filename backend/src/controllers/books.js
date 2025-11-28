@@ -48,12 +48,13 @@ export const createBook = async (req, res) => {
   }
 };
 
-export const getBooks = async (req, res) => {
+export const getBooks = async (req, res, next) => {
   try {
     let {
       page = 1,
       limit = 10,
-      search = '',
+      title = '',
+      author = '',
       sort = 'createdAt',
       order = 'desc',
     } = req.query;
@@ -65,19 +66,14 @@ export const getBooks = async (req, res) => {
       throw new AppError('Invalid pagination parameters', 400);
     }
 
-    const filters = search
-      ? {
-          $or: [
-            { title: { $regex: search, $options: 'i' } },
-            { author: { $regex: search, $options: 'i' } },
-          ],
-        }
-      : {};
+    const filters = {};
+    if (title) filters.title = { $regex: title, $options: 'i' };
+    if (author) filters.author = { $regex: author, $options: 'i' };
 
     const books = await Book.find(filters)
       .sort({ [sort]: order === 'desc' ? -1 : 1 })
       .skip((page - 1) * limit)
-      .limit(parseInt(limit));
+      .limit(limit);
 
     const total = await Book.countDocuments(filters);
 
