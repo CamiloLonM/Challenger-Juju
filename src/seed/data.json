@@ -1,0 +1,179 @@
+{
+  "users": [
+    {
+      "name": "Admin User",
+      "email": "admin@example.com",
+      "password": "Admin123!",
+      "role": "admin"
+    },
+    {
+      "name": "Regular User",
+      "email": "user@example.com",
+      "password": "User123!",
+      "role": "user"
+    }
+  ],
+
+  "books": [
+    {
+      "title": "The Pragmatic Programmer",
+      "author": "Andrew Hunt & David Thomas",
+      "description": "Best practices for modern software development.",
+      "publishedYear": 1999,
+      "category": "technology",
+      "state": "available"
+    },
+    {
+      "title": "Design Patterns",
+      "author": "Erich Gamma, Richard Helm, Ralph Johnson, John Vlissides",
+      "description": "The classic Gang of Four design patterns.",
+      "publishedYear": 1994,
+      "category": "technology",
+      "state": "available"
+    },
+    {
+      "title": "You Don't Know JS",
+      "author": "Kyle Simpson",
+      "description": "Deep dive into JavaScript internals.",
+      "publishedYear": 2015,
+      "category": "technology",
+      "state": "available"
+    },
+    {
+      "title": "Refactoring",
+      "author": "Martin Fowler",
+      "description": "Improving the design of existing code.",
+      "publishedYear": 1999,
+      "category": "technology",
+      "state": "available"
+    },
+    {
+      "title": "The Mythical Man-Month",
+      "author": "Fred Brooks",
+      "description": "Essays on software engineering.",
+      "publishedYear": 1975,
+      "category": "technology",
+      "state": "available"
+    },
+    {
+      "title": "The Lean Startup",
+      "author": "Eric Ries",
+      "description": "How modern startups build and iterate.",
+      "publishedYear": 2011,
+      "category": "other",
+      "state": "available"
+    },
+    {
+      "title": "Deep Work",
+      "author": "Cal Newport",
+      "description": "Rules for focused success in a distracted world.",
+      "publishedYear": 2016,
+      "category": "education",
+      "state": "available"
+    },
+    {
+      "title": "The Art of War",
+      "author": "Sun Tzu",
+      "description": "Classic text on strategy and warfare.",
+      "publishedYear": 1998,
+      "category": "history",
+      "state": "available"
+    },
+    {
+      "title": "Sapiens",
+      "author": "Yuval Noah Harari",
+      "description": "A brief history of humankind.",
+      "publishedYear": 2011,
+      "category": "history",
+      "state": "available"
+    },
+    {
+      "title": "The Power of Habit",
+      "author": "Charles Duhigg",
+      "description": "Understanding habit formation.",
+      "publishedYear": 2012,
+      "category": "education",
+      "state": "available"
+    },
+    {
+      "title": "The Four Agreements",
+      "author": "Miguel Ruiz",
+      "description": "Toltec wisdom for personal freedom.",
+      "publishedYear": 1997,
+      "category": "education",
+      "state": "available"
+    },
+    {
+      "title": "The Alchemist",
+      "author": "Paulo Coelho",
+      "description": "A story about finding your destiny.",
+      "publishedYear": 1988,
+      "category": "fiction",
+      "state": "available"
+    },
+    {
+      "title": "1984",
+      "author": "George Orwell",
+      "description": "Dystopian novel about totalitarianism.",
+      "publishedYear": 1949,
+      "category": "fiction",
+      "state": "available"
+    },
+    {
+      "title": "Brave New World",
+      "author": "Aldous Huxley",
+      "description": "Dystopian future controlled by technology.",
+      "publishedYear": 1932,
+      "category": "fiction",
+      "state": "available"
+    },
+    {
+      "title": "Harry Potter and the Philosopher's Stone",
+      "author": "J.K. Rowling",
+      "description": "The beginning of the Harry Potter saga.",
+      "publishedYear": 1997,
+      "category": "fiction",
+      "state": "available"
+    },
+    {
+      "title": "The Hobbit",
+      "author": "J.R.R. Tolkien",
+      "description": "Adventure preceding The Lord of the Rings.",
+      "publishedYear": 1937,
+      "category": "fiction",
+      "state": "available"
+    },
+    {
+      "title": "Thinking, Fast and Slow",
+      "author": "Daniel Kahneman",
+      "description": "A study of human decision making.",
+      "publishedYear": 2011,
+      "category": "education",
+      "state": "available"
+    },
+    {
+      "title": "The Subtle Art of Not Giving a F*ck",
+      "author": "Mark Manson",
+      "description": "A counterintuitive approach to living well.",
+      "publishedYear": 2016,
+      "category": "education",
+      "state": "available"
+    },
+    {
+      "title": "Rich Dad Poor Dad",
+      "author": "Robert Kiyosaki",
+      "description": "Financial education and mindset.",
+      "publishedYear": 1997,
+      "category": "other",
+      "state": "available"
+    },
+    {
+      "title": "The Intelligent Investor",
+      "author": "Benjamin Graham",
+      "description": "Investment principles from the father of value investing.",
+      "publishedYear": 1949,
+      "category": "other",
+      "state": "available"
+    }
+  ]
+}

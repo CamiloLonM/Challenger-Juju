@@ -10,7 +10,7 @@ import { errorHandler } from './middlewares/error.js';
 
 const app = express();
 
-const API_VERSION = process.env.API_VERSION || 'v1';
+const API_VERSION = process.env.API_VERSION;
 
 app.use(cors());
 app.use(express.json());
