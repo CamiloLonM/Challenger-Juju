@@ -18,6 +18,10 @@ export const emailRules = {
 export const publishedYeardRules = {
   required: 'publishedYear is required',
   min: { value: 0, message: 'Min 0 characters' },
+  max: {
+    value: new Date().getFullYear(),
+    message: 'Published year cannot be in the future',
+  },
 };
 
 export const titleRules = {
