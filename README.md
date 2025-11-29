@@ -111,3 +111,24 @@ http://localhost:"PORT"/api/v1/docs
 
 Use it to explore endpoints, see request/response examples, and test the API interactively.
 ```
+
+## Front
+
+2. Install dependencies:
+
+```
+npm install
+```
+
+3. Create a .env file in the root directory with the following variables:
+
+```
+VITE_API_URL
+```
+
+4. Start the development server:
+
+```
+npm run dev
+The API will run on http://localhost:5173.
+```

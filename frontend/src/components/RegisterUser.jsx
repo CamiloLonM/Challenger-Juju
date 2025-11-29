@@ -2,24 +2,15 @@ import { useEffect } from 'react';
 import { useForm, Controller } from 'react-hook-form';
 import { TextField, Button, MenuItem, Box, Typography } from '@mui/material';
 import { api } from '../services/api';
+import { userValidation } from '../utils/validationsUserForm';
 
 export default function UserForm({ onSave, onCancel }) {
   const { control, handleSubmit, reset } = useForm({
-    defaultValues: {
-      name: '',
-      email: '',
-      password: '',
-      role: 'user',
-    },
+    defaultValues: { name: '', email: '', password: '', role: 'user' },
   });
 
   useEffect(() => {
-    reset({
-      name: '',
-      email: '',
-      password: '',
-      role: 'user',
-    });
+    reset({ name: '', email: '', password: '', role: 'user' });
   }, [reset]);
 
   const onSubmit = async (data) => {
@@ -44,12 +35,21 @@ export default function UserForm({ onSave, onCancel }) {
         mb: 4,
       }}
     >
-      <Typography variant='h6'>Register User</Typography>
+      <Typography
+        variant='h6'
+        align='center'
+        sx={{
+          display: 'flex',
+          mb: 2,
+        }}
+      >
+        Register User
+      </Typography>
 
       <Controller
         name='name'
         control={control}
-        rules={{ required: 'Name is required' }}
+        rules={userValidation.name}
         render={({ field, fieldState }) => (
           <TextField
             {...field}
@@ -63,13 +63,7 @@ export default function UserForm({ onSave, onCancel }) {
       <Controller
         name='email'
         control={control}
-        rules={{
-          required: 'Email is required',
-          pattern: {
-            value: /^[^\s@]+@[^\s@]+\.[^\s@]+$/,
-            message: 'Invalid email format',
-          },
-        }}
+        rules={userValidation.email}
         render={({ field, fieldState }) => (
           <TextField
             {...field}
@@ -83,10 +77,7 @@ export default function UserForm({ onSave, onCancel }) {
       <Controller
         name='password'
         control={control}
-        rules={{
-          required: 'Password is required',
-          minLength: { value: 6, message: 'Min 6 characters' },
-        }}
+        rules={userValidation.password}
         render={({ field, fieldState }) => (
           <TextField
             {...field}

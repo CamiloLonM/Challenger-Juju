@@ -77,6 +77,7 @@ export default function BookList({ onEdit, refresh }) {
             <TableRow>
               <TableCell>Title</TableCell>
               <TableCell>Author</TableCell>
+              <TableCell>Description</TableCell>
               <TableCell>Year</TableCell>
               <TableCell>State</TableCell>
               <TableCell>Actions</TableCell>
@@ -87,6 +88,7 @@ export default function BookList({ onEdit, refresh }) {
               <TableRow key={book._id}>
                 <TableCell>{book.title}</TableCell>
                 <TableCell>{book.author}</TableCell>
+                <TableCell>{book.description}</TableCell>
                 <TableCell>{book.publishedYear}</TableCell>
                 <TableCell>{book.state}</TableCell>
                 <TableCell>

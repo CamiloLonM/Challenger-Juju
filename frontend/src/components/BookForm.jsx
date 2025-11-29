@@ -2,6 +2,13 @@ import { useEffect } from 'react';
 import { useForm, Controller } from 'react-hook-form';
 import { TextField, Button, MenuItem, Box } from '@mui/material';
 import { api } from '../services/api';
+import {
+  titleRules,
+  AuthorRules,
+  publishedYeardRules,
+  descriptionRules,
+  categoryRules,
+} from '../utils/validationBookForm';
 
 export default function BookForm({ book, onSave, onCancel }) {
   const { control, handleSubmit, reset } = useForm();
@@ -44,7 +51,7 @@ export default function BookForm({ book, onSave, onCancel }) {
       <Controller
         name='title'
         control={control}
-        rules={{ required: 'Title required' }}
+        rules={titleRules}
         render={({ field, fieldState }) => (
           <TextField
             {...field}
@@ -54,10 +61,11 @@ export default function BookForm({ book, onSave, onCancel }) {
           />
         )}
       />
+
       <Controller
         name='author'
         control={control}
-        rules={{ required: 'Author required' }}
+        rules={AuthorRules}
         render={({ field, fieldState }) => (
           <TextField
             {...field}
@@ -67,10 +75,11 @@ export default function BookForm({ book, onSave, onCancel }) {
           />
         )}
       />
+
       <Controller
         name='publishedYear'
         control={control}
-        rules={{ required: 'Year required', min: 0 }}
+        rules={publishedYeardRules}
         render={({ field, fieldState }) => (
           <TextField
             {...field}
@@ -79,6 +88,44 @@ export default function BookForm({ book, onSave, onCancel }) {
             error={!!fieldState.error}
             helperText={fieldState.error?.message}
           />
+        )}
+      />
+
+      <Controller
+        name='description'
+        control={control}
+        rules={descriptionRules}
+        render={({ field, fieldState }) => (
+          <TextField
+            {...field}
+            label='Description'
+            multiline
+            rows={4}
+            error={!!fieldState.error}
+            helperText={fieldState.error?.message}
+          />
+        )}
+      />
+
+      <Controller
+        name='category'
+        control={control}
+        rules={categoryRules}
+        render={({ field, fieldState }) => (
+          <TextField
+            {...field}
+            select
+            label='Category'
+            error={!!fieldState.error}
+            helperText={fieldState.error?.message}
+          >
+            <MenuItem value='fiction'>Fiction</MenuItem>
+            <MenuItem value='non-fiction'>Non-Fiction</MenuItem>
+            <MenuItem value='history'>History</MenuItem>
+            <MenuItem value='technology'>Technology</MenuItem>
+            <MenuItem value='education'>Education</MenuItem>
+            <MenuItem value='other'>Other</MenuItem>
+          </TextField>
         )}
       />
       <Controller
@@ -97,6 +144,7 @@ export default function BookForm({ book, onSave, onCancel }) {
           </TextField>
         )}
       />
+
       <Box sx={{ display: 'flex', gap: 2 }}>
         <Button type='submit' variant='contained'>
           Save

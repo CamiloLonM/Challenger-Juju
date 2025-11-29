@@ -1,6 +1,6 @@
 import { useState } from 'react';
 import { api, setAuthToken } from '../services/api';
-import { TextField, Button, Box } from '@mui/material';
+import { TextField, Button, Box, Typography } from '@mui/material';
 
 export default function LoginForm({ onLogin }) {
   const [email, setEmail] = useState('');
@@ -63,7 +63,9 @@ export default function LoginForm({ onLogin }) {
         gap: 2,
       }}
     >
-      <h2>{isRegistering ? 'Register' : 'Login'}</h2>
+      <Typography variant='h4' align='center' sx={{ mb: 2 }}>
+        {isRegistering ? 'Register' : 'Login'}
+      </Typography>
 
       {isRegistering && (
         <TextField
