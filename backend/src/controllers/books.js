@@ -1,37 +1,16 @@
-import Book from '../models/book.js';
-import { cleanString } from '../utils/books.js';
 import { createAudit } from '../utils/createAudit.js';
 import AppError from '../utils/AppError.js';
+import {
+  createNewBook,
+  getBooksList,
+  getBookDetails,
+  updateExistingBook,
+  deleteExistingBook,
+} from '../service/books.js';
 
-export const createBook = async (req, res) => {
+export const createBook = async (req, res, next) => {
   try {
-    let { title, author, description, publishedYear, category, state } =
-      req.body;
-
-    title = cleanString(title);
-    author = cleanString(author);
-
-    if (!title || !author) {
-      throw new AppError('Title and author are required', 400);
-    }
-
-    const exists = await Book.findOne({ title, author });
-
-    if (exists) {
-      return res
-        .status(400)
-        .json({ message: 'A book with this title and author already exists' });
-    }
-
-    const book = await Book.create({
-      title,
-      author,
-      description,
-      publishedYear,
-      category,
-      state,
-      createdBy: req.user.id,
-    });
+    const book = await createNewBook(req.body, req.user.id);
 
     await createAudit({
       req,
@@ -61,21 +40,18 @@ export const getBooks = async (req, res, next) => {
 
     page = Number(page);
     limit = Number(limit);
-
     if (isNaN(page) || page < 1 || isNaN(limit) || limit < 1) {
       throw new AppError('Invalid pagination parameters', 400);
     }
 
-    const filters = {};
-    if (title) filters.title = { $regex: title, $options: 'i' };
-    if (author) filters.author = { $regex: author, $options: 'i' };
-
-    const books = await Book.find(filters)
-      .sort({ [sort]: order === 'desc' ? -1 : 1 })
-      .skip((page - 1) * limit)
-      .limit(limit);
-
-    const total = await Book.countDocuments(filters);
+    const { books, total } = await getBooksList({
+      page,
+      limit,
+      title,
+      author,
+      sort,
+      order,
+    });
 
     return res.status(200).json({
       books,
@@ -89,13 +65,9 @@ export const getBooks = async (req, res, next) => {
   }
 };
 
-export const getBookById = async (req, res) => {
+export const getBookById = async (req, res, next) => {
   try {
-    const { id } = req.params;
-
-    const book = await Book.findById(id).populate('createdBy', 'name email');
-
-    if (!book) throw new AppError('Book not found', 404);
+    const book = await getBookDetails(req.params.id);
 
     return res.status(200).json(book);
   } catch (error) {
@@ -103,32 +75,11 @@ export const getBookById = async (req, res) => {
   }
 };
 
-export const updateBook = async (req, res) => {
+export const updateBook = async (req, res, next) => {
   try {
     const { id } = req.params;
-    let { title, author } = req.body;
 
-    const book = await Book.findById(id);
-    if (!book) throw new AppError('Book not found', 404);
-
-    if (title) title = cleanString(title);
-    if (author) author = cleanString(author);
-
-    if ((title && title !== book.title) || (author && author !== book.author)) {
-      const duplicate = await Book.findOne({ title, author });
-
-      if (duplicate && duplicate._id.toString() !== id) {
-        throw new AppError(
-          'Another book with this title and author already exists',
-          409
-        );
-      }
-    }
-
-    const updated = await Book.findByIdAndUpdate(id, req.body, {
-      new: true,
-      runValidators: true,
-    });
+    const updated = await updateExistingBook(id, req.body);
 
     await createAudit({
       req,
@@ -146,13 +97,11 @@ export const updateBook = async (req, res) => {
   }
 };
 
-export const deleteBook = async (req, res) => {
+export const deleteBook = async (req, res, next) => {
   try {
     const { id } = req.params;
 
-    const deleted = await Book.findByIdAndDelete(id);
-
-    if (!deleted) throw new AppError('Book not found', 404);
+    const deleted = await deleteExistingBook(id);
 
     await createAudit({
       req,
